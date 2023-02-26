@@ -7,6 +7,11 @@
     <groupId>com.dranfree</groupId>
     <artifactId>RandomJDK</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>base</module>
+    </modules>
 
     <properties>
         <java.version>19</java.version>
