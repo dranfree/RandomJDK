@@ -16,22 +16,22 @@ import java.util.concurrent.locks.LockSupport;
 public class TestSortedPrint {
 
     public static void main(String[] args) {
-        Thread t1 = new Thread(TestSortedPrint::doPrint, "thread-1");
+        Thread t1 = new Thread(TestSortedPrint::doPrintCurrentTime, "thread-1");
         Thread t2 = new Thread(() -> {
-            doJoin(t1);
-            doPrint();
+            doJoinOn(t1);
+            doPrintCurrentTime();
         }, "thread-2");
         Thread t3 = new Thread(() -> {
-            doJoin(t2);
-            doPrint();
+            doJoinOn(t2);
+            doPrintCurrentTime();
         }, "thread-3");
         t1.start();
         t2.start();
         t3.start();
-        doJoin(t3);
+        doJoinOn(t3);
     }
 
-    private static void doJoin(Thread prev) {
+    private static void doJoinOn(Thread prev) {
         try {
             prev.join();
         } catch (InterruptedException e) {
@@ -39,7 +39,7 @@ public class TestSortedPrint {
         }
     }
 
-    private static void doPrint() {
+    private static void doPrintCurrentTime() {
         LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(1));
         log.info("Current Time: {}", LocalDateTime.now());
     }
