@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2023/3/1
  */
 @Slf4j
-public class TestVolatileDisableReorder {
+public class TestVolatileReorder {
 
     static int a , b, c, d;
 
